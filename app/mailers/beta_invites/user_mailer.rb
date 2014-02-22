@@ -3,7 +3,7 @@ module BetaInvites
     default from: "from@example.com"
 
     def notify_invitee(invite_id, send_to_friend)
-      @invite = BetaInvite.find(invite_id)
+      @invite = BetaRequest.find(invite_id)
       @send_to_friend = send_to_friend
       if send_to_friend
         subject = "Someone invited you to check out MyApp!"
@@ -17,7 +17,7 @@ module BetaInvites
     end
 
     def notify_admins(invite_id)
-      @invite = BetaInvites::BetaRequest.find(invite_id)
+      @invite = BetaRequest.find(invite_id)
       subject = "New beta invite! <#{@invite.email}>"
       mail(:to=>"admin@myapp.com", :subject => subject) 
     end

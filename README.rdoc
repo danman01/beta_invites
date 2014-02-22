@@ -5,6 +5,8 @@ Before you launch
 - Create a User class (or some other class to work with)
 - Run the Devise installer
 - Run the devise invitable installer
+- Run rake BetaInvites:install:migrations && rake db:migrate
+- Mount application in routes file: `mount BetaInvites::Engine, at: "/beta_invites"`
 - You may want to create a mailer: user_mailer/notify_invitee.html.erb 
 - If you chose a different class name than User, declare class in an initializer (defaults to User)
 
