@@ -1,13 +1,14 @@
 = BetaInvites
 
-\#Before you launch
-- add Devise and devise_invitable gems to your gemfile
-- run the Devise installer
+Before you launch
+- Add Devise and devise_invitable gems to your gemfile
+- Create a User class (or some other class to work with)
+- Run the Devise installer
 - Run the devise invitable installer
-- you may want to create a mailer: user_mailer/notify_invitee.html.erb 
-- declare your user class in an initializer
+- You may want to create a mailer: user_mailer/notify_invitee.html.erb 
+- If you chose a different class name than User, declare class in an initializer (defaults to User)
 
-##TODO
+TODO
 
-- A typical application might have a User class that would be used to represent authors for a post or a comment. But there could be a case where the application calls this class something different, such as Person. For this reason, the engine should not hardcode associations specifically for a User class.
 - Write tests
+- Templates for user mailer and notify admin of new invite mailer
