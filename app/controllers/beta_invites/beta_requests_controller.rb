@@ -33,10 +33,7 @@ module BetaInvites
         @beta_request.invited_by = current_user
       end
 
-      if @beta_request.save
-        send_to_friend = user_signed_in?
-        UserMailer.notify_invitee(@beta_invite.id,send_to_friend).deliver
-        
+      if @beta_request.save        
         redirect_to main_app.root_url, notice: 'Beta request was successfully created.'
       else
         render action: 'new'

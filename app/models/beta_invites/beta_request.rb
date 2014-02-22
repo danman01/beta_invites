@@ -13,17 +13,14 @@ module BetaInvites
     # after_create :identify_for_analytics
     def send_invite!
       email = self.email
-      if user = USER_CLASS.invite!(:email => email, :name=>self.name)
+      if user = USER_CLASS.invite!(:email => email)
+        user.name = self.name if user.attributes["name"] && !self.name.blank?         
         self.invite_sent = true
         self.invite_sent_at = Time.now
         self.user_id = user.id # id of new user being created
+        self.save 
+        user.save
         # Setting the new user as a creator.
-        if self.save      ..
-          user.add_role!(USER_CLASS::ROLES[1])
-          puts "Invite Sent!"
-        else
-          puts "Could not send...#{self.errors.first.to_s}"
-        end
       else
         puts "Could not create invite..."
       end

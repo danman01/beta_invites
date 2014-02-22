@@ -17,28 +17,21 @@
   <tbody>
     <% @beta_requests.each do |beta_request| %>
       <tr>
-        <% user = beta_request.user %>
-        <% if user && user.username %>
-          <td>
-            <%= link_to beta_request.email, "/#{user.slug}" %>
-          </td>
-        <% else %>
-          <td>
-            <%= beta_request.email %>
-          </td>
-        <% end %>
+        <td>beta_request.name</td>
+        <td>
+          <%= beta_request.email %>
+        </td>
 
-        <td><%= beta_request.name %></td>
         <td>
           <%= beta_request.kind %>
         </td>
         <td>
           <%= beta_request.comments %>
         </td>
-        <% if user  %>
+        <% if user = beta_request.user  %>
           <% invite_text = link_to "Sent at #{user.invitation_sent_at}", "javascript:alert('Link: /users/invitation/accept?invitation_token=#{user.invitation_token}');"  %>
           <% if user.invitation_accepted_at %>
-            <% accepted_text = "#{format_time_with_year(user.invitation_accepted_at)}" %>
+            <% accepted_text = "#{user.invitation_accepted_at.strftime("%m/%d/%y")}" %>
           <% else %>
             <% accepted_text = "0" %>
           <% end %>
@@ -59,7 +52,7 @@
           <%= accepted_text if defined?(accepted_text)  %>
         </td>
         <td>
-          <%= format_time_with_year(beta_request.created_at) %>
+          <%= beta_request.created_at.strftime("%d/%m/%y") %>
         </td>
         <td>
           <%= link_to 'Edit', edit_beta_request_path(beta_request) %>

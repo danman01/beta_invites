@@ -3,10 +3,9 @@
 \#Before you launch
 - add Devise and devise_invitable gems to your gemfile
 - run the Devise installer
-- override user_mailer/notify_invitee.html.erb with your invitee notification email
-- declare your user class in an initializer: BetaInvites.config d
-- override notify_invitee in app/mailers
-- override notify_admins in app/mailers
+- Run the devise invitable installer
+- you may want to create a mailer: user_mailer/notify_invitee.html.erb 
+- declare your user class in an initializer
 
 ##TODO
 
