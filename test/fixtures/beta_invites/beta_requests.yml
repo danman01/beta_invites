@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  invite_sent: false
+  invitation_token: MyString
+  invited_by: 1
+  invite_sent_at: 2014-02-22 03:44:13
+  email: MyString
+  kind: MyString
+  comments: MyText
+
+two:
+  user_id: 1
+  invite_sent: false
+  invitation_token: MyString
+  invited_by: 1
+  invite_sent_at: 2014-02-22 03:44:13
+  email: MyString
+  kind: MyString
+  comments: MyText

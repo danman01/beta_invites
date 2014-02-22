@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @beta_request.user_id %>
+</p>
+
+<p>
+  <strong>Invite sent:</strong>
+  <%= @beta_request.invite_sent %>
+</p>
+
+<p>
+  <strong>Invitation token:</strong>
+  <%= @beta_request.invitation_token %>
+</p>
+
+<p>
+  <strong>Invited by:</strong>
+  <%= @beta_request.invited_by %>
+</p>
+
+<p>
+  <strong>Invite sent at:</strong>
+  <%= @beta_request.invite_sent_at %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @beta_request.email %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @beta_request.kind %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @beta_request.comments %>
+</p>
+
+<%= link_to 'Edit', edit_beta_request_path(@beta_request) %> |
+<%= link_to 'Back', beta_requests_path %>

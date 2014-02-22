@@ -1,0 +1,14 @@
+= BetaInvites
+
+\#Before you launch
+- add Devise and devise_invitable gems to your gemfile
+- run the Devise installer
+- override user_mailer/notify_invitee.html.erb with your invitee notification email
+- declare your user class in an initializer: BetaInvites.config d
+- override notify_invitee in app/mailers
+- override notify_admins in app/mailers
+
+##TODO
+
+- A typical application might have a User class that would be used to represent authors for a post or a comment. But there could be a case where the application calls this class something different, such as Person. For this reason, the engine should not hardcode associations specifically for a User class.
+- Write tests
