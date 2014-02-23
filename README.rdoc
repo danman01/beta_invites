@@ -11,18 +11,48 @@ gem 'devise_invitable'
 gem 'beta_invites', github: 'danman01/beta_invites'
 ```
 
-Before you launch
-- Add Devise and devise_invitable gems to your gemfile
+Before you launch:
+- Add gems devise and devise_invitable to your gemfile
 - Create a User class (or some other class to work with)
-- Run the Devise installer
-- Run the devise invitable installer
+- Run the Devise installer. [Instructions](https://github.com/plataformatec/devise)
+- Run the devise invitable installer. [Instructions](https://github.com/scambra/devise_invitable)
 - Run rake beta_invites:install:migrations && rake db:migrate
 - Mount application in routes file: `mount BetaInvites::Engine, at: "/beta_invites"`
-- You may want to create a mailer: rails g beta_invites:mailer - this will create app/mailers/user_mailer.rb, app/views/user_mailer/notify_invitee.html.erb  and notify_admins.html.erb, which you should definitely look at.
-- If you chose a different class name than User, declare class in an initializer (defaults to User)
-- Make sure to set up your email credentials. Mandrill is a good free service to use, or you can use google apps or microsoft (free)
+- You may want to run the mailer generator: rails g beta_invites:mailer 
+  - This will create `app/mailers/user_mailer.rb`, `app/views/user_mailer/notify_invitee.html.erb`  and `notify_admins.html.erb`, which you should definitely look at.
+- If you chose a different class name than User, declare class in an initializer (defaults to User). Not sure if this initializer works yet...
+- Make sure to set up your email credentials. Mandrill is a good free service to use, or you can use google apps or microsoft.
+
+Rails email setup [from Mandrill](http://help.mandrill.com/entries/21738467-Using-Mandrill-s-SMTP-integration-with-Web-Frameworks)
+```
+YourApp::Application.configure do
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "MANDRILL_USERNAME",
+    :password  => "MANDRILL_PASSWORD", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'yourdomain.com', # your domain to identify your server when connecting
+  }
+
+  # …
+end
+
+# app/mailers/your_mailer.rb
+
+class YourMailer < ActionMailer::Base
+  def email_name
+    mail :subject => "Mandrill rides the Rails!",
+         :to      => "recipient@example.com",
+         :from    => "you@yourdomain.com"
+  end
+end
+
+# In a controller: YourMailer.email_name.deliver
+```
 
 TODO
 
 - Write tests
-- Ability to config user class
+- Ability to config user class with an initializer
