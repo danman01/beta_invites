@@ -12,22 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://sharkswithlazers.net"
   s.summary     = "Add in ability to collect beta invite requests"
   s.description = "Beta invite requests can be collected, sent out and managed by admins. Goes with Devise and Devise Invitable."
-  s.post_install_message = <<-TEXT
-   now run generators and add this to the decorator:\n
-      after_create :notify_invitee
-      after_create :notify_admin
-
-      private
-        def notify_invitee
-          UserMailer.notify_invitee(self.id,user_signed_in?).deliver
-          puts "Notify invitee!"
-        end
-
-        def notify_admin
-          UserMailer.notify_admins(self.id).deliver
-          puts "Notify admin!"
-        end
-    TEXT
+  s.post_install_message = "look at the beta_invites generators avaialble with rails g --help"
 
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
