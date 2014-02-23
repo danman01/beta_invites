@@ -34,9 +34,7 @@ module BetaInvites
       end
 
       if @beta_request.save        
-        UserMailer.notify_invitee(@beta_request.id,user_signed_in?).deliver
-        UserMailer.notify_admins(@beta_request.id).deliver
-        
+        # mailers should be in main app        
         redirect_to main_app.root_url, notice: 'Beta request was successfully created.'
       else
         render action: 'new'

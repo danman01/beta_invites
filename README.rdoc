@@ -1,6 +1,6 @@
 = BetaInvites
 
-This ads a beta_invites mvc that comliments devise_invitable. It can be production ready if you make sure to review the generated files and do a manual test run.
+This adds a beta_invites mvc that comliments devise_invitable. It can be production ready if you make sure to review the generated files and do a manual test run.
 
 Installation:
 
@@ -20,6 +20,7 @@ Before you launch
 - Mount application in routes file: `mount BetaInvites::Engine, at: "/beta_invites"`
 - You may want to create a mailer: rails g beta_invites:mailer - this will create app/mailers/user_mailer.rb, app/views/user_mailer/notify_invitee.html.erb  and notify_admins.html.erb, which you should definitely look at.
 - If you chose a different class name than User, declare class in an initializer (defaults to User)
+- Make sure to set up your email credentials. Mandrill is a good free service to use, or you can use google apps or microsoft (free)
 
 TODO
 
