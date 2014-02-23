@@ -20,7 +20,7 @@ module BetaInvites
 
     private
     def notify_invitee
-      UserMailer.notify_invitee(self.id,user_signed_in?).deliver
+      UserMailer.notify_invitee(self.id,false).deliver
       puts "Notify invitee!"
     end
 
