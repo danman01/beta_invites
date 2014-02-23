@@ -17,7 +17,7 @@
   <tbody>
     <% @beta_requests.each do |beta_request| %>
       <tr>
-        <td>beta_request.name</td>
+        <td><%=beta_request.name%></td>
         <td>
           <%= beta_request.email %>
         </td>
