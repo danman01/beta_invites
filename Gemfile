@@ -14,3 +14,4 @@ gemspec
 # gem 'debugger'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem "jquery-rails"
+gem "sass-rails"
