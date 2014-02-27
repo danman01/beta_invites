@@ -42,7 +42,7 @@
           <td>Request form</td>
         <% else %>
           <td>
-            <%= link_to beta_request.invited_by.email, beta_request.invited_by %>
+            <%= link_to beta_request.invited_by.email, main_app.user_path(beta_request.invited_by) %>
           </td>
         <% end %>
         <td>
