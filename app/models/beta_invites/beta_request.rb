@@ -13,7 +13,12 @@ module BetaInvites
     # after_create :identify_for_analytics
     def send_invite!
       email = self.email
-      if user = USER_CLASS.invite!(:email => email)
+      user = USER_CLASS.new(email: email)
+      # username validation isn't skipped...figure out how to skip this?
+      if user.attributes.keys.include?("username")
+        user.username = set_username_from(email)
+      end
+      if user = user.invite!
         user.name = self.name if user.attributes["name"] && !self.name.blank?         
         self.invite_sent = true
         self.invite_sent_at = Time.now
@@ -31,16 +36,21 @@ module BetaInvites
   private
 
     def not_already_registered
-      if user=USER_CLASS.find_by_email(email)
-        if user.has_role?("creator")
-          errors.add :email, "is already registered as a creator.  Use the sign in links below or shoot us an email if you have any questions!"
-          @role = "creator"
-        else
-          errors.add :email, "is already registered as a fan. Use the links below to login. Want to be a creator? Shoot us an email and we'll set it up!"
-          @role = "fan"
-        end
+      if user=USER_CLASS.find_by(email: email)
+        errors.add :email, "is already registered. Use the links below to login."
       end
       
+    end
+
+    # generates a unique username given a base name
+    def set_username_from(name)
+      n = 0
+      new_name = name
+      while USER_CLASS.where("username = ?", new_name).present? do
+        n+=1
+        new_name = "#{name.split("@")[0]}#{n}" # accounts for emails and normal strings
+      end
+      new_name
     end
 
   end
