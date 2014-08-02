@@ -18,12 +18,14 @@ module BetaInvites
       if user.attributes.keys.include?("username")
         user.username = set_username_from(email)
       end
-      if user = user.invite!
-        user.name = self.name if user.attributes["name"] && !self.name.blank?         
+      if mail = user.invite!
+        user = User.find_by(email: mail.to.first) # the newly created user from #invite!
+        
+        user.name = self.name if user.attributes.keys.include?("name") && self.name.present?         
         self.invite_sent = true
         self.invite_sent_at = Time.now
         self.user_id = user.id # id of new user being created
-        self.save 
+        self.save
         user.save
         # Setting the new user as a creator.
       else
