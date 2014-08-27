@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Location</th>
       <th>Email</th>      
       <th>Kind</th>
       <th>Comments</th>
@@ -18,6 +19,7 @@
     <% @beta_requests.each do |beta_request| %>
       <tr>
         <td><%=beta_request.name%></td>
+        <td><%= beta_request.city %></td>
         <td>
           <%= beta_request.email %>
         </td>
