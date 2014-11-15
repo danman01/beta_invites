@@ -86,29 +86,8 @@ ENDTEXT
       Hi <%=@invite.name%>,
     </p>
     <p>
-    My name is Julian and I’m one of the co-founders of Bundio, the direct-to-fan subscription platform.
-    </p>
-    <p>
-    We built Bundio to enable artists that make cool things to distribute them directly to their biggest fans online. When you launch your subscription, you will be able to share your art with those that value it in a new, compelling format.
-    </p>
-    <p>
-    Please allow us some time to handle the invite requests we’ve received thus far. Fear not, you’ll be launching your own subscription in no time!
-    </p>
-    <p>
-    We’d love to hear about what you do! Please drop me a line by replying to this email or reaching out via the live chat tab on the website.
-    </p>
-    <p>
-    Best,<br>
-    Julian
-    </p>
-    <p>P.S.
-      <%if @invite.invited_by.nil?%>
-      <span> You received this email because you requested an invite at <a href="https://bundio.com" title="Bundio.com">Bundio.com</a></span>
-    <%else%>
-      <span> You were invited to use <a href="https://bundio.com" title="Bundio.com">Bundio</a> by <%=@invite.invited_by.email%></span>
-      <p>They said: <%= @invite.comments %></p>
-    <% end %>
-    </p>
+      Thanks for requesting an invite. We will get back to you soon.
+   </p>
     <%= render :partial => 'email_unsubscribe' %>
   </body>
 </html>

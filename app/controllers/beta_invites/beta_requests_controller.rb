@@ -2,7 +2,7 @@ require_dependency "beta_invites/application_controller"
 
 module BetaInvites
   class BetaRequestsController < ApplicationController
-    before_action :set_beta_request, only: [:show, :edit, :update, :destroy]
+    before_action :set_beta_request, only: [:new, :show, :edit, :update, :destroy]
 
     # GET /beta_requests
     def index
@@ -15,9 +15,6 @@ module BetaInvites
 
     # GET /beta_requests/new
     def new
-      @beta_request = BetaRequest.new
-      @beta_request.email = params[:email]
-      
     end
 
     # GET /beta_requests/1/edit
@@ -70,7 +67,10 @@ module BetaInvites
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_beta_request
-        @beta_request = BetaRequest.find(params[:id])
+        @beta_request = BetaRequest.find(params[:id]) if params[:id]
+        unless @beta_request
+          @beta_request = BetaRequest.new(email: params[:email])
+        end
       end
 
       # Only allow a trusted parameter "white list" through.
