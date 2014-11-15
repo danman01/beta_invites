@@ -3,6 +3,7 @@ require_dependency "beta_invites/application_controller"
 module BetaInvites
   class BetaRequestsController < ApplicationController
     before_action :set_beta_request, only: [:new, :show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:index]
 
     # GET /beta_requests
     def index
