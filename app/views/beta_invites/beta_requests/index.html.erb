@@ -33,7 +33,7 @@
         <% if user = beta_request.user  %>
           <% invite_text = link_to "Sent at #{user.invitation_sent_at}", "javascript:alert('Link: /users/invitation/accept?invitation_token=#{user.invitation_token}');"  %>
           <% if user.invitation_accepted_at %>
-            <% accepted_text = "#{user.invitation_accepted_at.strftime("%A, %b %d %Y")}" %>
+            <% accepted_text = "#{user.invitation_accepted_at.strftime("%m/%d/%y at %T")}" %>
           <% else %>
             <% accepted_text = "0" %>
           <% end %>
@@ -54,7 +54,7 @@
           <%= accepted_text if defined?(accepted_text)  %>
         </td>
         <td>
-          <%= beta_request.created_at.strftime("%A, %b %d %Y") %>
+          <%= beta_request.created_at.strftime("%m/%d/%y at %T") %>
         </td>
         <td>
           <%= link_to 'Edit', edit_beta_request_path(beta_request) %>
