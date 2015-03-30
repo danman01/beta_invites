@@ -2,6 +2,6 @@
 // All this logic will automatically be available in application.js.
 $(function(){
   $(".datatable").dataTable({
-    "order": [[8, "desc"]]
+    "order": [[8, "asc"]]
   })
 })
